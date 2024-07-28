@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import SignUpForm from "./singupForm";
 
 export const metadata: Metadata = {
   title: "Sign up",
@@ -17,8 +18,8 @@ export default function Page() {
             </p>
           </div>
           <div className="space-y-5">
-
-            <Link href="login" className="block text-center hover:underline">
+            <SignUpForm />
+            <Link href="/login" className="block text-center hover:underline">
               Already have an account? Log in
             </Link>
           </div>
