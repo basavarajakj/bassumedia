@@ -2,6 +2,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-   <main>Front Page</main>
+   <main className="h-[200vh] w-full bg-red-500">
+    <div className="w-full">front page</div> 
+   </main>
   );
 }
