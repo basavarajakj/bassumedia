@@ -15,6 +15,7 @@ import { formatDate } from "date-fns";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import UserPosts from "./UserPosts";
+import Linkify from "@/components/Linkify";
 
 interface PageProps {
   params: { username: string };
@@ -69,7 +70,7 @@ export default async function Page({ params: { username } }: PageProps) {
             {user.displayName}&apos; posts
           </h2>
         </div>
-        <UserPosts userId={user.id}/>
+        <UserPosts userId={user.id} />
       </div>
       <TrendsSidebar />
     </main>
@@ -99,13 +100,13 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
       <div className="flex flex-wrap gap-3 sm:flex-nowrap">
         <div className="me-auto space-y-3">
           <div>
-            <h1 className="text-3xl from-bold">{user.displayName}</h1>
+            <h1 className="from-bold text-3xl">{user.displayName}</h1>
             <div className="text-muted-foreground">@{user.username}</div>
           </div>
           <div>Member since {formatDate(user.createdAt, "MMM d, YYY")}</div>
           <div className="flex items-center gap-3">
             <span>
-              Posts:{" "} 
+              Posts:{" "}
               <span className="font-semibold">
                 {formateNumber(user._count.posts)}
               </span>
@@ -115,17 +116,18 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
         </div>
         {user.id == loggedInUserId ? (
           <Button>Edit profile</Button>
-        ): (
+        ) : (
           <FollowButton userId={user.id} initialState={followerInfo} />
         )}
       </div>
       {user.bio && (
         <>
           <hr />
-
-          <div className="whitespace-pre-line overflow-hidden break-words">
-            {user.bio}
-          </div>
+          <Linkify>
+            <div className="overflow-hidden whitespace-pre-line break-words">
+              {user.bio}
+            </div>
+          </Linkify>
         </>
       )}
     </div>
