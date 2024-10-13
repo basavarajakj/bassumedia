@@ -1,5 +1,5 @@
 import Image from "next/image";
-import avatarPlaceholder from "@/assets/avatarPlaceholder.png";
+import avatarPlaceholder from "@/assets/profilePhoto-default.jpg";
 import { cn } from "@/lib/utils";
 
 interface UserAvatarProps {

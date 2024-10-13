@@ -14,7 +14,7 @@ export function formateRelativeDate(from: Date) {
     if (currentDate.getFullYear() == from.getFullYear()) {
       return formatDate(from, "MMM d");
     } else {
-      return formatDate(from, "MM d, YYYY");
+      return formatDate(from, "MM d, yyyy");
     }
   }
 }
