@@ -80,13 +80,13 @@ export default function Post({ post }: PostProps) {
           >
             <CarouselContent className="w-full">
               {post.attachments.map((attachment, index) => (
-                <CarouselItem key={attachment.id} className="max-w-80 aspect-square flex-shrink-0 w-full gap-0">
+                <CarouselItem key={attachment.id} className="md:basis-1/2 lg:basis-1/2">
                   <MediaPreview media={attachment} />
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="hidden md:flex"/>
+            <CarouselNext className="hidden md:flex"/>
           </Carousel>
 
           {/* Pagination Dots */}
