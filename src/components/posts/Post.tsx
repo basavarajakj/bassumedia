@@ -1,3 +1,5 @@
+"use client";
+
 import { PostData } from "@/lib/types";
 import Link from "next/link";
 import UserAvatar from "../UserAvatar";
@@ -54,6 +56,7 @@ export default function Post({ post }: PostProps) {
             <Link
               href={`/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"
+              suppressContentEditableWarning
             >
               {formateRelativeDate(post.createdAt)}
             </Link>
