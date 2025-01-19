@@ -18,6 +18,7 @@ import {
   CarouselPrevious,
 } from "../ui/carosuel";
 import React, { useState, useEffect } from "react";
+import LikeButton from "./LikeButton";
 
 interface PostProps {
   post: PostData;
@@ -83,23 +84,26 @@ export default function Post({ post }: PostProps) {
           >
             <CarouselContent className="w-full">
               {post.attachments.map((attachment, index) => (
-                <CarouselItem key={attachment.id} className="md:basis-1/2 lg:basis-1/2">
+                <CarouselItem
+                  key={attachment.id}
+                  className="md:basis-1/2 lg:basis-1/2"
+                >
                   <MediaPreview media={attachment} />
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex"/>
-            <CarouselNext className="hidden md:flex"/>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
           </Carousel>
 
           {/* Pagination Dots */}
-          <div className="md:hidden flex justify-center mt-2">
+          <div className="mt-2 flex justify-center md:hidden">
             {post.attachments.map((_, index) => (
               <div
                 key={index}
                 className={cn(
-                  "h-2 w-2 mx-1 rounded-full transition-all duration-300",
-                  index === activeIndex ? "bg-primary" : "bg-gray-300"
+                  "mx-1 h-2 w-2 rounded-full transition-all duration-300",
+                  index === activeIndex ? "bg-primary" : "bg-gray-300",
                 )}
               />
             ))}
@@ -109,12 +113,20 @@ export default function Post({ post }: PostProps) {
         <div
           className={cn(
             "mx-auto",
-            post.attachments[0].type === "IMAGE" && "max-w-96"
+            post.attachments[0].type === "IMAGE" && "max-w-96",
           )}
         >
           <MediaPreview media={post.attachments[0]} />
         </div>
       ) : null}
+      <hr className="text-muted-foreground" />
+      <LikeButton
+        postId={post.id}
+        initialState={{
+          likes: post._count.likes,
+          isLikedByUser: post.likes.some((like) => like.userId === user.id),
+        }}
+      />
     </article>
   );
 }
